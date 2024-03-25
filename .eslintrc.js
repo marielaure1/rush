@@ -1,29 +1,24 @@
 module.exports = {
   root: true,
-  extends: "@react-native-community",
-  rules: {
-    // Désactiver les règles d'indentation
-    indent: "off",
-
-    // Désactiver les règles d'espacement
-    "no-trailing-spaces": "off",
-    "no-multiple-empty-lines": "off",
-    "padded-blocks": "off",
-    "space-before-blocks": "off",
-    "space-before-function-paren": "off",
-    "space-in-parens": "off",
-    "space-infix-ops": "off",
-    "space-unary-ops": "off",
-
-    // Désactiver les règles de saut de ligne
-    "linebreak-style": "off",
-
-    // Désactiver les règles de guillemets
-    quotes: "off",
-
-    // Désactiver d'autres règles
-    semi: "off",
-    "comma-dangle": "off",
-    "no-unused-vars": "off",
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
   },
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    "next/core-web-vitals",
+    "@react-native-community"
+  ],
+  rules: {
+    'prettier/prettier': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'quotes': ['error', 'double'],
+    'linebreak-style': ['off']
+  }
 };

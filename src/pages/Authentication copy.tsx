@@ -9,6 +9,8 @@ import {
   Button,
   useColorScheme,
   View,
+  ImageBackground,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -21,11 +23,12 @@ import {
 
 import {Amplify, Auth} from 'aws-amplify';
 import amplifyconfig from '../../amplifyconfiguration.js';
+import BackgroundImageAuth from '../assets/images/background-auth.jpg';
 Amplify.configure(amplifyconfig);
 
 // import Styles from "../styles";
 
-export default function Authentification(): JSX.Element {
+export default function Authentication(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [login, setLogin] = useState("edjour.marielaure@gmail.com");
   const [motDePasse, setMotDePasse] = useState("Azerty123333.");
@@ -34,6 +37,10 @@ export default function Authentification(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  // const BackgroundImageAuth = {uri: '../../../../src/assets/images/auth.png'};
+
+
 
   const handleSignUp = async () => {
 
@@ -99,8 +106,6 @@ export default function Authentification(): JSX.Element {
       
     }
   }
-
-  console.log(Styles);
   
 
   return (
@@ -111,12 +116,9 @@ export default function Authentification(): JSX.Element {
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+        style={styles.backgroundStyle}>
+         <ImageBackground source={BackgroundImageAuth} resizeMode="cover" style={styles.image}>
+      <View>
 
             <Text> Login :</Text>
             <TextInput value={login} onChangeText={(nouveauContenu) => setLogin(nouveauContenu)}/>
@@ -132,7 +134,7 @@ export default function Authentification(): JSX.Element {
 
             />
         </View>
-
+  {/* 
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -181,17 +183,16 @@ export default function Authentification(): JSX.Element {
             style={[styles.red]}
 
             />
-        </View>
+        </View> */}
+        </ImageBackground>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
+  const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
   bigBlue: {
     color: 'blue',
     fontWeight: 'bold',
@@ -200,4 +201,10 @@ const styles = StyleSheet.create({
   red: {
     color: 'red',
   },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    height: screenHeight
+  }
 });

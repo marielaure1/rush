@@ -13,5 +13,10 @@ module.exports = {
         inlineRequires: true,
       },
     }),
+  }, 
+  resolver: {
+    extraNodeModules: {
+      app: `${__dirname}/src`,
+    },
   },
 };

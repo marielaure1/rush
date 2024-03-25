@@ -1,74 +1,42 @@
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  Button,
-  useColorScheme,
-  View,
-} from 'react-native';
-// import Athentification from "./src/pages/Authentification.tsx";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Authentication from "@pages/authentication/authentication";
+import Login from "@pages/login/login";
+import Register from "@pages/register/register";
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import BottomNavigator from "@components/layout/bottomNavigator";
+import React, { useState, useContext, createContext } from "react";
+
+export const AuthContext = createContext(null);
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-function HomeScreen() {
-  return (
-    <View >
-      <Text>HomeScreen</Text>
-    </View>
-  );
-}
-
-function DiscoverScreen() {
-  return (
-    <View >
-      <Text>DiscoverScreen</Text>
-    </View>
-  );
-}
-
-function LiveScreen() {
-  return (
-    <View >
-      <Text>LiveScreen</Text>
-    </View>
-  );
-}
-
-function AbonnementScreen() {
-  return (
-    <View >
-      <Text>AbonnementScreen</Text>
-    </View>
-  );
-}
-function AccountScreen() {
-  return (
-    <View >
-      <Text>AccountScreen</Text>
-    </View>
-  );
-}
 
 export default function App(): JSX.Element {
-  return(
-    <>
-      <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen}/>
-        <Tab.Screen name="Discover" component={DiscoverScreen}/>
-        <Tab.Screen name="Live" component={LiveScreen}/>
-        <Tab.Screen name="Abonnement" component={AbonnementScreen}/>
-        <Tab.Screen name="Account" component={AccountScreen}/>
-      </Tab.Navigator>
-    </NavigationContainer>
-    </>
-  )
-}
+	const authContext = useContext(AuthContext);
+	// const {title, alertTest, isAuthenticated, setIsAuthenticated} = authContext;
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	return (
+		<>
+		<AuthContext.Provider value={{ 
+			isAuthenticated :Boolean, 
+			setIsAuthenticated :React.SetStateAction<boolean>, 
+			titre: "ShortsTitle", 
+			AlertTest: () => { Alert.alert("test fonction", "ceci est une fonction envoyé par context")}
+		}}>
+			<NavigationContainer>
+				<Stack.Navigator screenOptions={{headerShow: false}}>
+					{!isAuthenticated && (
+						<>
+							<Stack.Screen name="Authentication" component={Authentication} options={{ headerShown: false }}/>
+							<Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+							<Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
+						</>
+					)}
 
+					{isAuthenticated && <Stack.Screen name="bottomTab" component={BottomNavigator} options={{ headerShown: false }}/> }
+					
+				</Stack.Navigator>
+			</NavigationContainer>
+		</AuthContext.Provider>
+		</>
+	);
+}
