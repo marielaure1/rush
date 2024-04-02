@@ -22,7 +22,6 @@ export default function useHeader() {
           
         }
     }
-    return {setIsAuthenticated}
+    return {handleSignOut}
 };
 
-export default useHeader;

@@ -9,8 +9,8 @@ Amplify.configure(amplifyconfig);
 export default function useRegister() {
     const { setIsAuthenticated } = useContext(AuthContext);
     const isDarkMode = useColorScheme() === 'dark';
-    const [register, setRegister] = useState("edjour.marielaure@gmail.com");
-    const [password, setPassword] = useState("Azerty123333@");
+    const [register, setRegister] = useState("");
+    const [password, setPassword] = useState("");
     const [otp, setOtp] = useState();
     const [message, setMessage] = useState<string>();
     const [next, setNext] = useState(false);
@@ -32,7 +32,7 @@ export default function useRegister() {
                 autoSignIn: { enable: false}
             }
     
-            const sd = await Auth.signUp(signUpInfo);
+            const response = await Auth.signUp(signUpInfo);
 
             setNext(true)
 
@@ -62,9 +62,6 @@ export default function useRegister() {
             const confirmation = await Auth.confirmSignUp(
                 register, otpSplit.join('')
             );
-
-            console.log(confirmation);
-            
 
             setIsAuthenticated(true)
         } catch(error){
