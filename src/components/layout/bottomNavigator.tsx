@@ -13,6 +13,9 @@ import { NavigationContainer } from '@react-navigation/native'
 import { BottomTabBarProps, BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import Header from "@/src/components/layout/header/header";
 import Home from "@pages/home/home";
 import Discover from "@pages/discover/discover";
@@ -36,6 +39,7 @@ export default function BottomNavigator() {
 				tabBarActiveTintColor: 'white',
 				tabBarStyle: { backgroundColor: variables.clBlack002 },
 			}}
+			barStyle={{ backgroundColor: variables.clBlack002, color: variables.clWhite }}
 			>
 				<Tab.Screen
 				name="Home"
@@ -51,7 +55,7 @@ export default function BottomNavigator() {
 				name="Découverte"
 				options={{
 				tabBarIcon: ({color}) => (
-					<MaterialCommunityIcons name="home" color={color} size={26} />
+					<FontAwesome6 name="ranking-star" color={color} size={26} />
 				),
 				}}
 				component={Discover}
@@ -61,7 +65,7 @@ export default function BottomNavigator() {
 				name="Live"
 				options={{
 				tabBarIcon: ({color}) => (
-					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+					<FontAwesome name="video-camera" color={color} size={26} />
 				),
 				}}
 				component={Live}
@@ -71,7 +75,7 @@ export default function BottomNavigator() {
 				name="Category"
 				options={{
 				tabBarIcon: ({color}) => (
-					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+					<MaterialIcons name="category" color={color} size={26} />
 				),
 				}}
 				component={Category}
@@ -81,7 +85,7 @@ export default function BottomNavigator() {
 				name="Account"
 				options={{
 				tabBarIcon: ({color}) => (
-					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+					<FontAwesome name="user" color={color} size={26} />
 				),
 				}}
 				component={Account}

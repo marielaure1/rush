@@ -4,10 +4,12 @@ import variables from '@theme/theme.variables';
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: variables.innerWidth,
     padding: variables.paddingTerciary,
     zIndex: 3,
-    backgroundColor: variables.clBlack002
+    backgroundColor: variables.clBlack002,
+    flexDirection: 'row',
   },
   marginBottom: {
     marginVertical: 20
