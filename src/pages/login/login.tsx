@@ -13,7 +13,7 @@ import {
 
 import ButtonPrimary from "@components/buttons/buttonPrimary";
 import ButtonSecondary from "@components/buttons/buttonSecondary";
-import HookLogin from "@pages/login/login.hook";
+import useLogin from "@pages/login/login.hook";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BackgroundImageAuth from '@assets/images/background-auth.jpg';
 import styles from "@pages/login/login.styles";
@@ -27,7 +27,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ navigation }) => {
-  const { login, setLogin, password, setPassword, backgroundStyle, handleSignIn, isDarkMode } = HookLogin();
+  const { login, setLogin, password, setPassword, backgroundStyle, handleSignIn, isDarkMode } = useLogin();
 
   return (
     <KeyboardAvoidingView style={backgroundStyle}>

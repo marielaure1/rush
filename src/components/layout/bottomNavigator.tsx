@@ -13,6 +13,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { BottomTabBarProps, BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Header from "@components/layout/Header";
 
 LogBox.ignoreAllLogs();
 // const Tab = createBottomTabNavigator();
@@ -63,63 +64,66 @@ function AccountScreen() {
 export default function BottomNavigator() {
 
 	return (
-		<Tab.Navigator
-		initialRouteName="Home"
-		screenOptions={{
-			tabBarActiveTintColor: 'white',
-		}}
-		>
+		<>
+			<Header/>
+			<Tab.Navigator
+			initialRouteName="Home"
+			screenOptions={{
+				tabBarActiveTintColor: 'white',
+			}}
+			>
+				<Tab.Screen
+				name="Home"
+				options={{
+				tabBarIcon: ({color}) => (
+					<MaterialCommunityIcons name="home" color={color} size={26} />
+				),
+				}}
+				component={HomeScreen}
+				/>
+
+				<Tab.Screen
+				name="Découverte"
+				options={{
+				tabBarIcon: ({color}) => (
+					<MaterialCommunityIcons name="home" color={color} size={26} />
+				),
+				}}
+				component={HomeScreen}
+				/>
+
+				<Tab.Screen
+				name="Live"
+				options={{
+				tabBarIcon: ({color}) => (
+					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+				),
+				}}
+				component={HomeScreen}
+				/>
+
+				<Tab.Screen
+				name="Category"
+				options={{
+				tabBarIcon: ({color}) => (
+					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+				),
+				}}
+				component={HomeScreen}
+				/>
+
 			<Tab.Screen
-			name="Home"
-			options={{
-			tabBarIcon: ({color}) => (
-				<MaterialCommunityIcons name="home" color={color} size={26} />
-			),
-			}}
-			component={HomeScreen}
-			/>
-
-            <Tab.Screen
-			name="Découverte"
-			options={{
-			tabBarIcon: ({color}) => (
-				<MaterialCommunityIcons name="home" color={color} size={26} />
-			),
-			}}
-			component={HomeScreen}
-			/>
-
-			<Tab.Screen
-			name="Live"
-			options={{
-			tabBarIcon: ({color}) => (
-				<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
-			),
-			}}
-			component={HomeScreen}
-			/>
-
-            <Tab.Screen
-			name="Category"
-			options={{
-			tabBarIcon: ({color}) => (
-				<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
-			),
-			}}
-			component={HomeScreen}
-			/>
-
-           <Tab.Screen
-			name="Account"
-			options={{
-			tabBarIcon: ({color}) => (
-				<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
-			),
-			}}
-			component={AccountScreen}
-			/>
-			
-		</Tab.Navigator>
+				name="Account"
+				options={{
+				tabBarIcon: ({color}) => (
+					<MaterialCommunityIcons name="home-edit-outline" color={color} size={26} />
+				),
+				}}
+				component={AccountScreen}
+				/>
+				
+			</Tab.Navigator>
+		</>
 	);
 }
 

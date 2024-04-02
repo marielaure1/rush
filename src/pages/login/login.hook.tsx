@@ -6,17 +6,19 @@ import amplifyconfig from '@/amplifyconfiguration.js';
 import { AuthContext } from "@/App";
 Amplify.configure(amplifyconfig);
 
-export default function  HookLogin() {
+export default function useLogin() {
     const { setIsAuthenticated } = useContext(AuthContext);
     const isDarkMode = useColorScheme() === 'dark';
     const [login, setLogin] = useState("edjour.marielaure@gmail.com");
-    const [password, setPassword] = useState("Azerty123333.");
+    const [password, setPassword] = useState("Azerty123333@");
   
     const backgroundStyle = {
       backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
   
     const handleSignIn = async () => {
+        console.log("dd");
+        
         try{
             const user = await Auth.signIn(login, password);
 

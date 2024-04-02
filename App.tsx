@@ -4,21 +4,25 @@ import Register from "@pages/register/register";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import BottomNavigator from "@components/layout/bottomNavigator";
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 
 export const AuthContext = createContext(null);
 
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
-	const authContext = useContext(AuthContext);
-	// const {title, alertTest, isAuthenticated, setIsAuthenticated} = authContext;
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+	useEffect(() => {
+	  console.log(isAuthenticated);
+	  
+	}, [isAuthenticated])
+	
 	return (
 		<>
 		<AuthContext.Provider value={{ 
 			isAuthenticated :Boolean, 
-			setIsAuthenticated :React.SetStateAction<boolean>, 
+			setIsAuthenticated, 
 			titre: "ShortsTitle", 
 			AlertTest: () => { Alert.alert("test fonction", "ceci est une fonction envoyé par context")}
 		}}>

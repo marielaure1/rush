@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef }  from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,12 +7,13 @@ import {
   TextInput,
   View,
   ImageBackground,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
 
 import ButtonPrimary from "@components/buttons/buttonPrimary";
 import ButtonSecondary from "@components/buttons/buttonSecondary";
-import HookRegister from "@pages/register/register.hook";
+import useRegister from "@pages/register/register.hook";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BackgroundImageAuth from "@assets/images/background-auth.jpg";
 import styles from "@pages/register/register.styles";
@@ -26,18 +27,25 @@ interface RegisterProps {
 }
 
 const Register: React.FC<RegisterProps> = ({ navigation }) => {
-    const { 
+    let { 
 		register, 
 		setRegister, 
 		password, 
 		setPassword, 
 		backgroundStyle, 
 		handleSignUp, 
-		otp, 
-		handleOTP, 
 		isDarkMode, 
-		message 
-	} = HookRegister();
+		handleOTP, 
+		otp, 
+		setOtp, 
+		message, 
+		next,
+		handleInputOtpChange,
+		otpInputs,
+		otpRefs,
+		otpSplit,
+		handleOTPResend
+	} = useRegister();
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -47,11 +55,12 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
 		/>
 		<ScrollView contentInsetAdjustmentBehavior="automatic" >
 			<ImageBackground source={BackgroundImageAuth} resizeMode="cover" style={styles.image}>
-			
+		
+			{!next && (
 				<View style={styles.container}>
-					<Text>{message}</Text>
+					<Text style={styles.text}>{message}</Text>
 					<TextInput 
-					placeholder={"Nom d’utilisateur / Email"}
+					placeholder={"Email"}
 					value={register} 
 					onChange={(content) => setRegister(content)}
 					style={[styles.inputField]}
@@ -69,25 +78,39 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
 					style={[styles.inputField]}
 					/>
 
-                    <ButtonPrimary navigation={navigation} styleBg={[styles.marginBottom, buttons.buttonBgBlack]} action={handleSignUp} text="S'inscrire"/>
+                    <ButtonPrimary navigation={navigation} styleBg={[styles.marginBottom, buttons.buttonBgBlack]} action={() => handleSignUp()} text="S'inscrire"/>
                     <ButtonSecondary navigation={navigation} styleTxt={[styles.marginBottom, texts.textPrimary]}  action={navigation.goBack} text="Retour"/>
 				</View>
-				{/* <View
-				style={{
-					backgroundColor: isDarkMode ? Colors.black : Colors.white,
-				}}>
+			)}
 
-					<Text> Otp :</Text>
-					<TextInput 
-					keyboardType='numeric'
-					value={otp} 
-					onChangeText={(nouveauContenu) => setOtp(nouveauContenu)}/>
-					<Button 
-					title="Valider l'otp" 
-					onPress={handleOTP}
+			{next && (
+				<View style={styles.container}>
+				    <Text style={styles.text}>{message}</Text>
 
-					/>
-				</View> */}
+					<View style={styles.containerOtp}>
+
+
+					{otpInputs.map((_, index) => (
+						<TextInput
+						key={index}
+						ref={ref => (otpRefs.current[index] = ref)}
+						style={styles.inputOtp}
+						maxLength={1}
+						keyboardType="numeric"
+						value={otpSplit[index]}
+						onChangeText={text => handleInputOtpChange(index, text)}
+						placeholder='0'
+						/>
+					 ))}
+					</View>
+
+					<Text style={styles.text}>Un code de vérification vous à été envoyé par mail.</Text>
+                    <ButtonSecondary navigation={navigation} styleTxt={[styles.marginBottom, texts.textPrimary]}  action={handleOTPResend} text="Renvoyer le code ?"/>
+
+					<ButtonPrimary navigation={navigation} styleBg={[styles.marginBottom, buttons.buttonBgBlack]} action={handleOTP} text="Valider l'OTP"/>
+                    <ButtonSecondary navigation={navigation} styleTxt={[styles.marginBottom, texts.textPrimary]}  action={navigation.goBack} text="Retour"/>
+				</View>
+		    )}
 			</ImageBackground>
 		</ScrollView>
     </SafeAreaView>
