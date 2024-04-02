@@ -17,6 +17,8 @@ export default function useLogin() {
     };
   
     const handleSignIn = async () => {
+        console.log(password);
+        
         
         try{
             const user = await Auth.signIn(login, password);

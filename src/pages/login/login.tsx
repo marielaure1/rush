@@ -40,15 +40,19 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
 			
 				<View style={styles.container}>
 					<TextInput 
-					placeholder={"Nom d’utilisateur / Email"}
+					placeholder={"Email"}
+                    placeholderTextColor="#000" 
 					value={login} 
-					onChange={(content) => setLogin(content)}
+					onChangeText={(content) => setLogin(content)}
 					style={[styles.inputField]}
 					/>
-					<TextInput 
+
+                   <TextInput 
+					placeholder={"Mot de passe"}
+                    placeholderTextColor="#000" 
 					secureTextEntry={true}
 					value={password} 
-					onChange={(content) => setPassword(content)}
+					onChangeText={(content) => setPassword(content)}
 					style={[styles.inputField]}
 					/>
 

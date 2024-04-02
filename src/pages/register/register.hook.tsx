@@ -83,6 +83,7 @@ export default function useRegister() {
     };
 
     const handleOTPResend = async () => {
+        console.log(password);
         
         try{
             const resendSignUp = await Auth.resendSignUp( register );

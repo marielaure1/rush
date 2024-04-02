@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         backgroundColor:  variables.clWhite,
         borderRadius:  variables.brTerciary,
         marginBottom: 20,
-        color: variables.clBlack
+        color: variables.clBlack,
+        placeholderTextColor: variables.clBlack002
     }
 });
   

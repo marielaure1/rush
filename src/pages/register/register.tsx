@@ -61,20 +61,25 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
 					<Text style={styles.text}>{message}</Text>
 					<TextInput 
 					placeholder={"Email"}
+                    placeholderTextColor="#000" 
 					value={register} 
-					onChange={(content) => setRegister(content)}
+					onChangeText={(content) => setRegister(content)}
 					style={[styles.inputField]}
 					/>
 					<TextInput 
+					placeholder={"Mot de passe"}
+                    placeholderTextColor="#000" 
 					secureTextEntry={true}
 					value={password} 
-					onChange={(content) => setPassword(content)}
+					onChangeText={(content) => setPassword(content)}
 					style={[styles.inputField]}
 					/>
 					<TextInput 
+					placeholder={"Mot de passe"}
+                    placeholderTextColor="#000" 
 					secureTextEntry={true}
 					value={password} 
-					onChange={(content) => setPassword(content)}
+					onChangeText={(content) => setPassword(content)}
 					style={[styles.inputField]}
 					/>
 

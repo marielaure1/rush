@@ -34,6 +34,7 @@ export default function BottomNavigator() {
 			initialRouteName="Home"
 			screenOptions={{
 				tabBarActiveTintColor: 'white',
+				tabBarStyle: { backgroundColor: variables.clBlack002 },
 			}}
 			>
 				<Tab.Screen
