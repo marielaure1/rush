@@ -7,6 +7,8 @@ const variables = {
     clPurple: "#5617FF",
     clWhite: "#FFFFFF",
     clBlack: "#000000",
+    clBlack002: "#1E1E1E",
+    clBlack003: "#111111",
     paddingPrimary: 20,
     paddingSecondary: 15,
     paddingTerciary: 10,

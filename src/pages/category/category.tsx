@@ -9,28 +9,26 @@ import {
   ImageBackground,
   Text
 } from 'react-native';
+import styles from "@pages/discover/discover.styles";
+import HookDiscover from "@pages/discover/discover.hook";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import styles from "@pages/home/home.styles";
-import useHome from "@pages/home/home.hook";
-// import Stories from "@components/stories/stories";
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+type DiscoverScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Discover'>;
 
-interface HomeProps {
-  navigation: HomeScreenNavigationProp;
+interface DiscoverProps {
+  navigation: DiscoverScreenNavigationProp;
 }
 
-const Home: React.FC<HomeProps> = ({ navigation }) => {
+const Discover: React.FC<DiscoverProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView>
 		<ScrollView contentInsetAdjustmentBehavior="automatic" >
 		    <View style={styles.container}>		
-        {/* <Stories/> */}
 			</View>
 		</ScrollView>
     </SafeAreaView>
    );
 }
 
-export default Home;
+export default Discover;

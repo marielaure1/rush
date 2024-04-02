@@ -1,6 +1,4 @@
 import React, {useContext} from 'react';
-import { Pressable, StyleSheet, Text, ViewStyle } from 'react-native';
-import buttons from '@theme/theme.buttons';
 import texts from '@theme/theme.texts';
 import ButtonSecondary from "@components/buttons/buttonSecondary";
 import {Amplify, Auth} from 'aws-amplify';
@@ -9,7 +7,7 @@ import { AuthContext } from "@/App";
 import styles from "@pages/register/register.styles";
 Amplify.configure(amplifyconfig);
 
-const Header: React.FC = ({navigation}) => {
+export default function useHeader() {
     const { setIsAuthenticated } = useContext(AuthContext);
 
     const handleSignOut = async () => {
@@ -24,9 +22,7 @@ const Header: React.FC = ({navigation}) => {
           
         }
     }
-    return (
-        <ButtonSecondary navigation={navigation} styleTxt={[styles.marginBottom, texts.textPrimary]}  action={handleSignOut} text="Deconnexion"/>
-    );
+    return {setIsAuthenticated}
 };
 
-export default Header;
+export default useHeader;
